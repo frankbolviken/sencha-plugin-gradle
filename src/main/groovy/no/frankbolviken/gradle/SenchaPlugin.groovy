@@ -6,7 +6,8 @@ import org.gradle.api.Project
 
 class SenchaPluginExtension {
     String webappName = "app"
-    String workingDir = "src/main/webapp"
+    String webappDir = "."
+    String environment = "production"
 }
 /**
  * Sencha plugin for Gradle. Enabling building sencha apps with gradle.
@@ -14,7 +15,8 @@ class SenchaPluginExtension {
 class SenchaPlugin implements Plugin<Project> {
     @Override
     def void apply(Project project) {
-        project.extensions.create("senchaArgs", SenchaPluginExtension)
-        project.task('sencha', type: SenchaTask)
+        project.extensions.create("sencha", SenchaPluginExtension)
+        project.task('sencha', type: SenchaTask, description: "Utilize Sencha CMD to minify app, and build war with it's sources")
+        project.tasks.getByName('war').dependsOn('sencha')
     }
 }
