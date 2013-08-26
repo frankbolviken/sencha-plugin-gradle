@@ -12,6 +12,7 @@ SenchaPlugin for Gradle
  - Clone this project
  - Update build.gradle to point to your repository
  - Execute the following command from command line
+ 		
  		gradle install
 
 # Usage
